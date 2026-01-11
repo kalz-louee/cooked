@@ -1,0 +1,8 @@
+{
+  "name": "Cooked.",
+  "description": "An edgy, high-energy roast generator that burns you based on your Spotify listening habits, Valorant stats, or questionable anime watch history using Gemini AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
