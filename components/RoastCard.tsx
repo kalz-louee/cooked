@@ -11,6 +11,11 @@ interface RoastCardProps {
 export const RoastCard: React.FC<RoastCardProps> = ({ result, onReset, onOpenShare }) => {
   const [activeTab, setActiveTab] = useState<'bad' | 'good'>('bad');
 
+  const copyToClipboard = (text: string, message: string) => {
+    navigator.clipboard.writeText(text);
+    alert(message);
+  };
+
   return (
     <div className="relative group max-w-2xl w-full mx-auto animate-in fade-in slide-in-from-bottom-10 duration-700">
       {/* Background glow effects */}
@@ -120,11 +125,18 @@ export const RoastCard: React.FC<RoastCardProps> = ({ result, onReset, onOpenSha
             </button>
 
             <button 
+              className="bg-zinc-800 hover:bg-zinc-700 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 text-[10px] font-black tracking-widest transition-all"
+              onClick={() => copyToClipboard(result.roast, 'BAD_COP_ROAST_COPIED')}
+            >
+              <i className="fa-solid fa-copy text-blue-500"></i>
+              COPY_ROAST
+            </button>
+
+            <button 
               className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-[10px] font-black tracking-widest transition-all ${activeTab === 'bad' ? 'bg-orange-600 shadow-lg shadow-orange-600/20' : 'bg-blue-600 shadow-lg shadow-blue-600/20'}`}
               onClick={() => {
                   const text = activeTab === 'bad' ? `ROASTED: "${result.roast}"` : `REDEMPTION: ${result.recommendations[0]}`;
-                  navigator.clipboard.writeText(`${text} | GoodCopBadCop.ai`);
-                  alert('DATA_COPIED_TO_CLIPBOARD');
+                  copyToClipboard(`${text} | GoodCopBadCop.ai`, 'FULL_REPORT_COPIED');
               }}
             >
               <i className="fa-solid fa-fingerprint"></i>
