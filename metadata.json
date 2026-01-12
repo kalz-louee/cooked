@@ -1,6 +1,6 @@
 {
-  "name": "Cooked.",
-  "description": "An edgy, high-energy roast generator that burns you based on your Spotify listening habits, Valorant stats, or questionable anime watch history using Gemini AI.",
+  "name": "Good Cop Bad Cop",
+  "description": "The ultimate taste-refining duo. One roasts your mid choices, the other helps you fix your life with top-tier recommendations.",
   "requestFramePermissions": [
     "camera",
     "microphone"

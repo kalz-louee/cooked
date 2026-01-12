@@ -1,12 +1,17 @@
 
+// Import React
 import React from 'react';
+// Import our custom Button component
 import { Button } from './Button';
 
+// Props for the page
 interface HallOfShameProps {
-  onBack: () => void;
+  onBack: () => void; // Function to go back to home
 }
 
+// The HallOfShame component function
 export const HallOfShame: React.FC<HallOfShameProps> = ({ onBack }) => {
+  // A list of fake (mock) roasts to show as examples of the AI's power
   const roasts = [
     {
       user: "BasicBecca_99",
@@ -16,11 +21,11 @@ export const HallOfShame: React.FC<HallOfShameProps> = ({ onBack }) => {
       verdict: "ULTRA BASIC"
     },
     {
-      user: "JettMain4Life",
-      type: "Valorant",
-      roast: "A 0.4 KD as a Duelist? You're not entrying site, you're donating your body to the enemy team's eco round. If missing every OP shot was an Olympic sport, you'd have more gold medals than your actual rank ever will see.",
+      user: "GamerPro420",
+      type: "Gaming",
+      roast: "You're still playing League of Legends in 2024? That's not a hobby, it's a diagnosis. 2,000 hours and you're still stuck in Silver 4 playing Yasuo with a 30% win rate. The only thing you're 'carrying' is a sense of regret.",
       level: 8,
-      verdict: "HARDSTUCK IRON"
+      verdict: "HARDSTUCK TRASH"
     },
     {
       user: "OtakuKing",
@@ -32,15 +37,19 @@ export const HallOfShame: React.FC<HallOfShameProps> = ({ onBack }) => {
   ];
 
   return (
+    // Main container with entry animation
     <div className="max-w-5xl w-full mx-auto animate-in fade-in slide-in-from-bottom-10 duration-500">
+      {/* Title section */}
       <div className="text-center mb-16">
         <h2 className="text-5xl font-black mb-4 tracking-tighter italic uppercase">HALL OF SHAME</h2>
         <p className="text-zinc-500 text-lg">The absolute hardest burns Chef Burnard has ever served.</p>
       </div>
 
+      {/* Grid showing the roast cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         {roasts.map((r, idx) => (
           <div key={idx} className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex flex-col hover:border-orange-500/50 transition-all group">
+            {/* User info and heat score */}
             <div className="flex justify-between items-start mb-6">
               <div>
                 <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{r.type} Roast</span>
@@ -51,10 +60,12 @@ export const HallOfShame: React.FC<HallOfShameProps> = ({ onBack }) => {
               </div>
             </div>
             
+            {/* The roast text */}
             <p className="text-zinc-300 italic text-sm leading-relaxed flex-1 mb-6">
               "{r.roast}"
             </p>
 
+            {/* Bottom info: verdict and timestamp */}
             <div className="border-t border-zinc-800 pt-4 flex justify-between items-center">
                 <span className="text-[10px] font-black uppercase text-orange-500 tracking-tighter">{r.verdict}</span>
                 <span className="text-[10px] font-bold text-zinc-600">3 HOURS AGO</span>
@@ -63,6 +74,7 @@ export const HallOfShame: React.FC<HallOfShameProps> = ({ onBack }) => {
         ))}
       </div>
 
+      {/* Navigation buttons at the bottom */}
       <div className="flex justify-center gap-4">
         <Button onClick={onBack} variant="ghost">
            Go Back

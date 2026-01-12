@@ -1,36 +1,36 @@
 
 // Category defines the three specific things we can roast
-export type Category = 'spotify' | 'valorant' | 'anime';
+export type Category = 'spotify' | 'gaming' | 'anime';
 
-// Interface for Spotify data: what we expect the user to provide
+// Interface for Spotify data
 export interface SpotifyData {
   topArtists: string[];
   topGenres: string[];
   recentTracks: string[];
 }
 
-// Interface for Valorant data: stats that we can mock
-export interface ValorantData {
-  username: string;
+// Generalized Gaming data
+export interface GamingData {
+  gameTitle: string;
   rank: string;
-  mainAgent: string;
-  kd: string;
-  hsPercentage: string;
+  playstyle: string;
+  stats: string;
 }
 
-// Interface for Anime data: your watching habits
+// Interface for Anime data
 export interface AnimeData {
   topAnime: string[];
   waifuHusband: string;
   episodesWatched: string;
 }
 
-// Interface for the AI's response: structured so we can display it nicely
+// Interface for the AI's response
 export interface RoastResult {
-  roast: string;         // The actual text of the insult
-  cookingLevel: number;  // A score from 1 to 10
-  verdict: string;       // A short title like "ABSOLUTELY MID"
+  roast: string;              // The "Bad Cop" insult
+  recommendations: string[];  // The "Good Cop" suggestions (3-5 items)
+  cookingLevel: number;       // Roast score 1-10
+  verdict: string;            // Short verdict
 }
 
-// A Union Type: RoastData can be any of the three data structures above
-export type RoastData = SpotifyData | ValorantData | AnimeData;
+// A Union Type for all possible inputs
+export type RoastData = SpotifyData | GamingData | AnimeData;

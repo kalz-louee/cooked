@@ -3,60 +3,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Ensures the website looks good and scales properly on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cooked. | Get Roasted by AI</title>
-  <!-- Tailwind CSS: A utility-first CSS framework for rapid UI development -->
+  <title>GOOD COP BAD COP | Tactical Evidence Lab</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome: A library for icons (like the fire icon or social media logos) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Importing modern fonts for a high-end look -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700;900&display=swap" rel="stylesheet">
   <style>
-    /* Global styles that apply to the whole page */
+    :root {
+      --cyber-blue: #3b82f6;
+      --atomic-orange: #f97316;
+      --tactical-bg: #05070a;
+    }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0c0c0c; /* Deep black background */
-      color: #fff; /* White text for contrast */
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--tactical-bg);
+      color: #e2e8f0;
+      overflow-x: hidden;
     }
-    /* Special class for headings using the "Space Grotesk" font */
-    .font-display {
-      font-family: 'Space+Grotesk', sans-serif;
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    /* Scanline Effect */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 1000;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
     }
-    /* A subtle dot-grid pattern background made with CSS gradients */
-    .bg-grid {
-      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-      background-size: 24px 24px;
+
+    /* Subtle CRT Flicker */
+    @keyframes flicker {
+      0% { opacity: 0.97; }
+      5% { opacity: 0.95; }
+      10% { opacity: 0.9; }
+      15% { opacity: 0.98; }
+      20% { opacity: 0.94; }
+      100% { opacity: 1; }
     }
-    /* Animation keyframes to make the fire icon "breathe" or flicker */
-    @keyframes flame {
-      0%, 100% { transform: scaleY(1); opacity: 0.8; }
-      50% { transform: scaleY(1.2); opacity: 1; }
+    .crt-flicker { animation: flicker 0.15s infinite; }
+
+    /* Tactical Border Corners */
+    .tactical-border {
+      position: relative;
     }
-    /* Utility class to apply the flame animation */
-    .flame-animation {
-      animation: flame 1.5s infinite ease-in-out;
+    .tactical-border::before, .tactical-border::after {
+      content: "";
+      position: absolute;
+      width: 10px; height: 10px;
+      border: 2px solid var(--cyber-blue);
     }
-    /* Custom scrollbar styling to match the dark theme */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #111; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #444; }
+    .tactical-border::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+    .tactical-border::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+    .tactical-border-orange::before, .tactical-border-orange::after { border-color: var(--atomic-orange); }
+
+    .bg-grid-tech {
+      background-image: linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    @keyframes scan {
+      0% { top: -10%; }
+      100% { top: 110%; }
+    }
+    .scanner-line {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: var(--cyber-blue);
+      box-shadow: 0 0 15px var(--cyber-blue);
+      opacity: 0.3;
+      animation: scan 3s linear infinite;
+      z-index: 10;
+    }
   </style>
-  <!-- Import Map: Tells the browser where to find modules like React and Gemini API when we import them -->
   <script type="importmap">
   {
     "imports": {
       "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
       "react/": "https://esm.sh/react@^19.2.3/",
       "react": "https://esm.sh/react@^19.2.3",
-      "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+      "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+      "html2canvas": "https://esm.sh/html2canvas@1.4.1"
     }
   }
   </script>
 </head>
-<body class="bg-grid">
-  <!-- The container where React will inject our application -->
+<body class="bg-grid-tech">
   <div id="root"></div>
 </body>
 </html>
